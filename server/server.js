@@ -4,6 +4,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 // Import routes
@@ -89,7 +90,12 @@ app.use(passport.session());
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 
-// Health check route
+// Health check route for Render
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+// Root health check route
 app.get('/', (req, res) => {
   res.json({ 
     message: 'MERN Image Search API',
