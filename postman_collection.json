@@ -1,0 +1,125 @@
+{
+  "info": {
+    "name": "MERN Image Search API",
+    "description": "API endpoints for MERN Image Search application with OAuth authentication",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/auth/current-user",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["auth", "current-user"]
+            },
+            "description": "Get currently authenticated user information"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/auth/logout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["auth", "logout"]
+            },
+            "description": "Logout current user and destroy session"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search & History",
+      "item": [
+        {
+          "name": "Search Images",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"term\": \"nature\",\n  \"page\": 1,\n  \"perPage\": 20\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/search",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "search"]
+            },
+            "description": "Search for images using Unsplash API. Requires authentication."
+          }
+        },
+        {
+          "name": "Get Top Searches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/top-searches",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "top-searches"]
+            },
+            "description": "Get top 5 most frequent search terms across all users. Requires authentication."
+          }
+        },
+        {
+          "name": "Get Search History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/history?limit=50",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "history"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of history items to return"
+                }
+              ]
+            },
+            "description": "Get current user's search history. Requires authentication."
+          }
+        },
+        {
+          "name": "Clear Search History",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/history",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "history"]
+            },
+            "description": "Clear all search history for current user. Requires authentication."
+          }
+        }
+      ]
+    }
+  ]
+}

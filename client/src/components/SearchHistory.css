@@ -1,0 +1,146 @@
+.search-history {
+  background: rgba(244, 243, 238, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(138, 129, 124, 0.2);
+}
+
+.search-history.empty {
+  text-align: center;
+  padding: 40px 25px;
+}
+
+.search-history h3 {
+  color: #8a817c;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.empty-message {
+  color: #8a817c;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.clear-history-btn {
+  background: transparent;
+  color: #8a817c;
+  border: 2px solid #8a817c;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-history-btn:hover {
+  background: #8a817c;
+  color: #f4f3ee;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: #e8e6e1;
+  border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: rgba(138, 129, 124, 0.4);
+  border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(138, 129, 124, 0.6);
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: rgba(138, 129, 124, 0.08);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: 15px;
+  border: 1px solid rgba(138, 129, 124, 0.15);
+}
+
+.history-item:hover {
+  background: rgba(138, 129, 124, 0.15);
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.history-term {
+  flex: 1;
+  color: #8a817c;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.history-time {
+  color: #9d948f;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.history-note {
+  margin-top: 15px;
+  text-align: center;
+  color: #9d948f;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .search-history {
+    padding: 20px;
+  }
+  
+  .history-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .clear-history-btn {
+    width: 100%;
+  }
+  
+  .history-item {
+    padding: 10px 12px;
+  }
+  
+  .history-term {
+    font-size: 0.95rem;
+  }
+  
+  .history-time {
+    font-size: 0.8rem;
+  }
+}
