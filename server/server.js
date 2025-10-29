@@ -86,6 +86,12 @@ app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serve static files from React build in production
+if (process.env.NODE_ENV === 'production') {
+  const buildPath = path.join(__dirname, '../client/build');
+  app.use(express.static(buildPath));
+}
+
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
@@ -95,17 +101,24 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-// Root health check route
-app.get('/', (req, res) => {
-  res.json({ 
-    message: 'MERN Image Search API',
-    status: 'running',
-    endpoints: {
-      auth: '/auth/*',
-      api: '/api/*'
-    }
+// Serve React app for all other routes in production
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
   });
-});
+} else {
+  // Root health check route for development
+  app.get('/', (req, res) => {
+    res.json({ 
+      message: 'MERN Image Search API',
+      status: 'running',
+      endpoints: {
+        auth: '/auth/*',
+        api: '/api/*'
+      }
+    });
+  });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
